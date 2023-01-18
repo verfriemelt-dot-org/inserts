@@ -7,13 +7,14 @@ services:
       args:
         USER: ${USER}
     environment:
-      POSTGRES_HOST: postgres
+      POSTGRES_HOST: pgpool
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:
       - postgres
     volumes:
       - .:/var/www/
+      - .docker/dev/php/conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini
       - .docker/fpm.conf:/usr/local/etc/php-fpm.d/www.conf
 
   nginx:
@@ -29,7 +30,7 @@ services:
   postgres:
     image: postgres:15-bullseye
     volumes:
-      - .docker/postgres.conf:/etc/postgresql/postgresql.conf
+      - .docker/postgres.conf:/var/lib/postgresql/data/postgresql.conf
     ports:
       - "5432:5432"
     environment:
@@ -37,3 +38,17 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_DB=docker
       - POSTGRES_HOST_AUTH_METHOD=scram-sha-256
+
+  pgpool:
+    image: bitnami/pgpool:latest
+    ports:
+      - "5433:5432"
+    environment:
+      - PGPOOL_BACKEND_NODES=0:postgres:5432
+      - PGPOOL_SR_CHECK_USER=docker
+      - PGPOOL_SR_CHECK_PASSWORD=docker
+      - PGPOOL_ENABLE_LDAP=no
+      - PGPOOL_POSTGRES_USERNAME=docker
+      - PGPOOL_POSTGRES_PASSWORD=docker
+      - PGPOOL_ADMIN_USERNAME=admin
+      - PGPOOL_ADMIN_PASSWORD=adminpassword

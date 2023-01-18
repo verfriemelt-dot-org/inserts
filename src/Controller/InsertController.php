@@ -16,9 +16,7 @@ class InsertController extends AbstractController
     public function index(): JsonResponse
     {
 
-        $point = new DataPoint(5);
-        $this->em->persist($point);
-        $this->em->flush();
+        $this->em->getConnection()->executeQuery('insert into docker.data_point (value) values (5)');
 
         return new JsonResponse($point);
     }
