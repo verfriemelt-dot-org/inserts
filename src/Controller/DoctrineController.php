@@ -22,8 +22,14 @@ class DoctrineController extends AbstractController
         return new JsonResponse($point);
     }
 
+    #[Route("/info")]
+    public function doctrineConnection() {
+        phpinfo();
+        die();
+    }
+
     #[Route("/doctrine/connection")]
-    public function doctrineConnection(): JsonResponse
+    public function info(): JsonResponse
     {
         $point = new DataPoint(5);
 

@@ -24,6 +24,8 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
+
+    $containerConfigurator->parameters()->set('container.dumper.inline_factories', true);
     $services = $containerConfigurator->services();
 
     $services
