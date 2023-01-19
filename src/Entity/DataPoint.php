@@ -16,13 +16,13 @@ class DataPoint
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(name: 'id', type: Types::INTEGER)]
-    public readonly int $id;
+    public int $id;
 
     #[ORM\Column(name: 'value', type: Types::INTEGER)]
-    public readonly int $value;
+    public int $value;
 
     #[ORM\Column(name: 'created_at', type: Types::DATETIME_MUTABLE)]
-    private DateTime $created;
+    public DateTime $created;
 
     public function __construct(int $value)
     {
