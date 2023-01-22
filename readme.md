@@ -41,3 +41,11 @@ Requests per second:    1347.91 [#/sec] (mean)
 Time per request:       74.189 [ms] (mean)
 Time per request:       0.742 [ms] (mean, across all concurrent requests)
 ```
+
+# static.php
+
+```shell
+Requests per second:    2571.33 [#/sec] (mean)
+Time per request:       38.890 [ms] (mean)
+Time per request:       0.389 [ms] (mean, across all concurrent requests)
+```
