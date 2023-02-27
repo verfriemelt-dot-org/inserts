@@ -22,5 +22,8 @@
         "psr-4": {
             "verfriemelt\\inserts\\": "src"
         }
+    },
+    "require-dev": {
+        "swoole/ide-helper": "^5.0"
     }
 }
