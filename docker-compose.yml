@@ -17,6 +17,18 @@ services:
       - .docker/php.ini:/usr/local/etc/php/php.ini
       - .docker/fpm.conf:/usr/local/etc/php-fpm.d/www.conf
 
+  swoole:
+    build:
+      context: .
+      dockerfile: .docker/swoole.Dockerfile
+      args:
+        USER: ${USER}
+    command: "php /var/www/server.php"
+    volumes:
+      - .:/var/www
+    ports:
+      - "9501:9501"
+
   nginx:
     image: nginxinc/nginx-unprivileged:1.22-alpine
     volumes:

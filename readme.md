@@ -1,4 +1,6 @@
-# pg direct
+# inserts
+
+## pg direct
 
 ```shell
 ab -c 100 -n 10000 localhost:8081/doctrine/persister
@@ -20,7 +22,7 @@ Time per request:       142.555 [ms] (mean)
 Time per request:       1.426 [ms] (mean, across all concurrent requests)
 ```
 
-# pgpool
+## pgpool
 
 ```shell
 ab -c 100 -n 10000 localhost:8081/doctrine/persister
@@ -42,10 +44,22 @@ Time per request:       74.189 [ms] (mean)
 Time per request:       0.742 [ms] (mean, across all concurrent requests)
 ```
 
-# static.php
+## static.php
 
 ```shell
 Requests per second:    2571.33 [#/sec] (mean)
 Time per request:       38.890 [ms] (mean)
 Time per request:       0.389 [ms] (mean, across all concurrent requests)
+```
+
+## swoole
+
+```shell
+ab -c 100 -n 10000 http://localhost:9501/
+```
+
+```shell
+Requests per second:    21448.78 [#/sec] (mean)
+Time per request:       4.662 [ms] (mean)
+Time per request:       0.047 [ms] (mean, across all concurrent requests)
 ```
